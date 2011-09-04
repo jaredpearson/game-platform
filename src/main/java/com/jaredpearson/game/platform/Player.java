@@ -14,6 +14,7 @@ public class Player
 	private float x;
 	private float y;
 	private float moveDistance = 2f;
+	private Arc fieldOfView = new ArcDegree(60);
 	
 	public float getX() 
 	{
@@ -33,6 +34,22 @@ public class Player
 	public Arc getFacing() 
 	{
 		return facing;
+	}
+	
+	/**
+	 * Gets the player's field of view.
+	 */
+	public Arc getFieldOfView() 
+	{
+		return fieldOfView;
+	}
+	
+	/**
+	 * Sets the player's field of view.
+	 */
+	public void setFieldOfView(Arc fieldOfView) 
+	{
+		this.fieldOfView = fieldOfView;
 	}
 	
 	/**

@@ -45,7 +45,7 @@ public class ArcRadian
 	{
 		return new ArcDegree(this.radian * (180/Math.PI));
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -53,5 +53,21 @@ public class ArcRadian
 	{
 		ArcRadian radian = arc.toRadian();
 		return new ArcRadian(this.radian + radian.toDouble());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Arc divide(double value) 
+	{
+		return new ArcRadian(this.radian / value);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Arc negate() 
+	{
+		return new ArcRadian(-this.radian);
 	}
 }

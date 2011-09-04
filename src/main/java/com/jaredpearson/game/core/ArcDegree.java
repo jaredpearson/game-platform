@@ -62,6 +62,22 @@ public class ArcDegree
 		ArcDegree degree = arc.toDegree();
 		return new ArcDegree(this.degree + degree.toDouble());
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public Arc divide(double value)
+	{
+		return new ArcDegree(this.degree / value);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Arc negate() 
+	{
+		return new ArcDegree(-this.degree);
+	}
 
 	/**
 	 * {@inheritDoc}

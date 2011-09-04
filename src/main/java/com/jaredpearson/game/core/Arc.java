@@ -27,6 +27,16 @@ public interface Arc
 	public Arc add(Arc arc);
 	
 	/**
+	 * Divides the angle by the specified value and returns the result as a new angle.
+	 */
+	public Arc divide(double value);
+	
+	/**
+	 * Returns a new angle that is the negation of the current angle.
+	 */
+	public Arc negate();
+	
+	/**
 	 * Converts an angle to radians.
 	 */
 	public ArcRadian toRadian();
