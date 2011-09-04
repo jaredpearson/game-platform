@@ -5,6 +5,9 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jaredpearson.game.platform.Console;
 import com.jaredpearson.game.platform.GraphicsEngine;
 import com.jaredpearson.game.platform.InputEngine;
@@ -18,11 +21,14 @@ import com.jaredpearson.game.platform.SimplePlatform;
  */
 public class AwtPlatformFactory 
 {
+	private static final Logger logger = LoggerFactory.getLogger(AwtPlatformFactory.class);
 	/**
 	 * Creates the default platform.
 	 */
 	public Platform createPlatform()
 	{
+		logger.trace("creating AWT platform");
+		
 		int width = 640;
 		int height = 480;
 		
