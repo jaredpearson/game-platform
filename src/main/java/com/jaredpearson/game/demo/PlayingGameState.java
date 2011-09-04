@@ -41,25 +41,25 @@ public class PlayingGameState
 				if(e.getKeyCode() == 37)
 				{
 					platform.getConsole().writeStatus("Moving player west");
-					player.setFacing(ArcDegree.DEGREE_270);
+					player.setFacing(ArcDegree.DEGREE_180);
 					player.moveTo(player.getX() - player.getMoveDistance(), player.getY());
 				}
 				else if(e.getKeyCode() == 38)
 				{
 					platform.getConsole().writeStatus("Moving player north");
-					player.setFacing(ArcDegree.DEGREE_0);
+					player.setFacing(ArcDegree.DEGREE_270);
 					player.moveTo(player.getX(), player.getY() - player.getMoveDistance());
 				}
 				else if(e.getKeyCode() == 39)
 				{
 					platform.getConsole().writeStatus("Moving player east");
-					player.setFacing(ArcDegree.DEGREE_90);
+					player.setFacing(ArcDegree.DEGREE_0);
 					player.moveTo(player.getX() + player.getMoveDistance(), player.getY());
 				}
 				else if(e.getKeyCode() == 40)
 				{
 					platform.getConsole().writeStatus("Moving player south");
-					player.setFacing(ArcDegree.DEGREE_180);
+					player.setFacing(ArcDegree.DEGREE_90);
 					player.moveTo(player.getX(), player.getY() + player.getMoveDistance());
 				}
 			}
@@ -87,7 +87,7 @@ public class PlayingGameState
 		
 		//set the starting player position, facing south
 		player.moveTo(100, 100);
-		player.setFacing(ArcDegree.DEGREE_180);
+		player.setFacing(ArcDegree.DEGREE_90);
 		
 		//create the player's ui
 		PlayerUI playerUI = new PlayerUI(player);

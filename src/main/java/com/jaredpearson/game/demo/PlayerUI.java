@@ -1,6 +1,5 @@
 package com.jaredpearson.game.demo;
 
-import com.jaredpearson.game.core.ArcDegree;
 import com.jaredpearson.game.core.Color;
 import com.jaredpearson.game.platform.Drawable;
 import com.jaredpearson.game.platform.Graphics2D;
@@ -42,11 +41,7 @@ public class PlayerUI
 	private void drawFacingLine(Graphics2D graphics)
 	{
 		int facingLineLength = 5;
-		
-		//adjust the degrees by 90 counter clockwise
-		ArcDegree arcDegree = player.getFacing().add(new ArcDegree(-90)).toDegree();
-		
-		double playerFacingRadian = arcDegree.toRadian().toDouble();
+		double playerFacingRadian = player.getFacing().toRadian().toDouble();
 		
 		//calculate using parametric equation for a circle
 		double x = player.getX() + (facingLineLength * Math.cos(playerFacingRadian));
