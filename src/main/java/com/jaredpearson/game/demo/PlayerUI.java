@@ -7,6 +7,9 @@ import com.jaredpearson.game.platform.Drawable;
 import com.jaredpearson.game.platform.Graphics2D;
 import com.jaredpearson.game.platform.Player;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Represents the UI of the player
  * @author jaredp
@@ -14,12 +17,15 @@ import com.jaredpearson.game.platform.Player;
 public class PlayerUI
 	implements Drawable
 {
+	private static final Logger logger = LoggerFactory.getLogger(PlayerUI.class);
 	private int radius = 5;
 	private Player player;
+	private CollisionManager collisionManager;
 	
-	public PlayerUI(Player player) 
+	public PlayerUI(Player player, CollisionManager collisionManager) 
 	{
 		this.player = player;
+		this.collisionManager = collisionManager;
 	}
 	
 	/**
@@ -50,16 +56,54 @@ public class PlayerUI
 	
 	private void drawFieldOfViewCone(Graphics2D graphics, Point playerPoint)
 	{
-		int fovLineLength = 100;
 		Arc fovHalf = player.getFieldOfView().divide(2);
 		
 		//draw a line for the FOV left
 		Arc fovLeft = player.getFacing().add(fovHalf.negate());
-		drawLine(graphics, playerPoint, fovLeft, fovLineLength);
+		drawLine(graphics, playerPoint, fovLeft);
 		
 		//draw a line for the FOV right
 		Arc fovRight = player.getFacing().add(fovHalf);
-		drawLine(graphics, playerPoint, fovRight, fovLineLength);
+		drawLine(graphics, playerPoint, fovRight);
+	}
+	
+	/**
+	 * Draws a line from the specified point at the angle until the edge of the screen or
+	 * until a collision occurs.
+	 */
+	private void drawLine(Graphics2D graphics, Point point, Arc angle)
+	{
+		double angleRadian = angle.toRadian().toDouble();
+		double angleCos = Math.cos(angleRadian);
+		double angleSin = Math.sin(angleRadian);
+		
+		Point collisionPoint = null;
+		for(int distance = 0; ; distance++)
+		{
+			double x = point.getX() + (distance * angleCos);
+			double y = point.getY() + (distance * angleSin);
+			
+			Point checkPoint = new Point((float)x, (float)y);
+			if(collisionManager.isCollisionAt(checkPoint))
+			{
+				logger.debug("Ray collision found at distance {}", distance);
+				collisionPoint = checkPoint;
+				break;
+			}
+		}
+		
+		if(collisionPoint != null)
+		{
+			graphics.drawLine(
+					(int)point.getX(),
+					(int)point.getY(),
+					(int)collisionPoint.getX(),
+					(int)collisionPoint.getY());
+		}
+		else
+		{
+			logger.warn("Not drawing ray because no collision found");
+		}
 	}
 	
 	/**

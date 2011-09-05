@@ -32,6 +32,9 @@ public class PlayingGameState
 	 */
 	protected void initialize(final Platform platform)
 	{
+		int worldWidth = 640;
+		int worldHeight = 480;
+		
 		//set up the key listener
 		platform.getInputEngine().addKeyListener(new KeyListener() {
 			public void keyReleased(KeyEvent e) {
@@ -65,7 +68,7 @@ public class PlayingGameState
 			}
 		});
 		
-		entities.add(new Grid(0, 0, 640, 480));
+		entities.add(new Grid(0, 0, worldWidth, worldHeight));
 		
 		final Rectangle rectangle = new Rectangle(0, 0, 200, 100);
 		KeyFrame keyFrame1 = new KeyFrame(1000, new Updatable() {
@@ -87,10 +90,13 @@ public class PlayingGameState
 		
 		//set the starting player position, facing south
 		player.moveTo(100, 100);
-		player.setFacing(ArcDegree.DEGREE_90);
+		player.setFacing(ArcDegree.DEGREE_0);
+		
+		//create the collision manager
+		CollisionManager collisionManager = new CollisionManager(entities, worldWidth, worldHeight);
 		
 		//create the player's ui
-		PlayerUI playerUI = new PlayerUI(player);
+		PlayerUI playerUI = new PlayerUI(player, collisionManager);
 		entities.add(playerUI);
 	}
 	

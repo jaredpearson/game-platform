@@ -11,7 +11,7 @@ import com.jaredpearson.game.platform.Movable;
  * @author jaredp
  */
 public class Rectangle
-	implements Drawable, Movable
+	implements Drawable, Movable, Collidable
 {
 	private Point[] points;
 	private float height;
@@ -75,5 +75,15 @@ public class Rectangle
 		
 		points[1].setX(points[0].getX() + width);
 		points[1].setY(points[0].getY() + height);
+	}
+
+	/**
+	 * Determines if a collision occurs at the following point.
+	 * @return Returns <code>true</code> when a collision occurs.
+	 */
+	public boolean isCollisionAt(Point point)
+	{
+		return point.getX() >= this.points[0].getX() && point.getX() < this.points[1].getX()
+				&& point.getY() >= this.points[0].getY() && point.getY() < this.points[1].getY();
 	}
 }
