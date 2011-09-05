@@ -70,4 +70,28 @@ public class ArcRadian
 	{
 		return new ArcRadian(-this.radian);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isGreaterThan(Arc compare) 
+	{
+		return this.radian > compare.toRadian().toDouble();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isEqualTo(Arc compare)
+	{
+		return this.radian == compare.toRadian().toDouble();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isLessThan(Arc compare)
+	{
+		return this.radian < compare.toRadian().toDouble();
+	}
 }

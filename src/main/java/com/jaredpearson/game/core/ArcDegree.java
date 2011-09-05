@@ -94,4 +94,28 @@ public class ArcDegree
 	{
 		return this;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isGreaterThan(Arc compare) 
+	{
+		return this.degree > compare.toDegree().toDouble();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isEqualTo(Arc compare)
+	{
+		return this.degree == compare.toDegree().toDouble();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isLessThan(Arc compare)
+	{
+		return this.degree < compare.toDegree().toDouble();
+	}
 }

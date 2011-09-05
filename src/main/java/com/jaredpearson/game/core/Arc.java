@@ -45,4 +45,22 @@ public interface Arc
 	 * Converts an angle to degrees.
 	 */
 	public ArcDegree toDegree();
+	
+	/**
+	 * Determines if this angle is greater than the one specified. 
+	 * @return Returns <code>true</code> when this angle is greater than one specified.
+	 */
+	public boolean isGreaterThan(Arc compare);
+	
+	/**
+	 * Determines if this angle is equal to the one specified. 
+	 * @return Returns <code>true</code> when this angle is equal to the one specified.
+	 */
+	public boolean isEqualTo(Arc compare);
+	
+	/**
+	 * Determines if this angle is less than the one specified. 
+	 * @return Returns <code>true</code> when this angle is less than one specified.
+	 */
+	public boolean isLessThan(Arc compare);
 }
